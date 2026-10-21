@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: notify-demo
+  config:
+    import: optional:file:.env[.properties]
   mail:
     host: ${SMTP_HOST:}
     port: ${SMTP_PORT:587}
@@ -21,6 +23,20 @@ app:
     from: ${MAIL_FROM:no-reply@example.com}
   twilio:
     account-sid: ${TWILIO_ACCOUNT_SID:}
+    api-key-sid: ${TWILIO_API_KEY_SID:}
+    api-key-secret: ${TWILIO_API_KEY_SECRET:}
     auth-token: ${TWILIO_AUTH_TOKEN:}
     from-number: ${TWILIO_FROM_NUMBER:}
     public-url: ${PUBLIC_URL:}
+  stripe:
+    secret-key: ${STRIPE_SECRET_KEY:}
+    webhook-secret: ${STRIPE_WEBHOOK_SECRET:}
+    currency: ${STRIPE_CURRENCY:usd}
+    success-url: ${STRIPE_SUCCESS_URL:http://localhost:8080/api/payments/success}
+    cancel-url: ${STRIPE_CANCEL_URL:http://localhost:8080/api/payments/cancel}
+
+logging:
+  file:
+    name: ${LOG_FILE:logs/app.log}
+  level:
+    com.example.notify: ${LOG_LEVEL:INFO}

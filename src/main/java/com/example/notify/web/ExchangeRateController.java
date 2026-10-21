@@ -1,16 +1,11 @@
 package com.example.notify.web;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/rates")
@@ -32,10 +27,5 @@ public class ExchangeRateController {
                         .build())
                 .retrieve()
                 .body(JsonNode.class);
-    }
-
-    @ExceptionHandler(HttpClientErrorException.class)
-    public ResponseEntity<Map<String, String>> handleClientError(HttpClientErrorException exception) {
-        return ResponseEntity.badRequest().body(Map.of("error", exception.getResponseBodyAsString()));
     }
 }

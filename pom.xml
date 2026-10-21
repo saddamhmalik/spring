@@ -20,6 +20,7 @@
     <properties>
         <java.version>21</java.version>
         <twilio.version>10.9.2</twilio.version>
+        <stripe.version>34.0.0</stripe.version>
     </properties>
 
     <dependencies>
@@ -39,6 +40,11 @@
             <groupId>com.twilio.sdk</groupId>
             <artifactId>twilio</artifactId>
             <version>${twilio.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>${stripe.version}</version>
         </dependency>
     </dependencies>
 
